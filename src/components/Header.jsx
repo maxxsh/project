@@ -36,7 +36,7 @@ export default function Header() {
             <img
               src={require("../assets/img/logo.jpg")}
               class="h-12"
-              alt="Flowbite Logo"
+              alt="Logo"
             />
           </a>
           <button

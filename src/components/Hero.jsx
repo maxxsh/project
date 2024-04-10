@@ -12,7 +12,7 @@ export default function Hero() {
           </p>
           <a
             href="#"
-            class="inline-flex items-center justify-center px-5 py-3 text-lg font-medium text-center bg-yellow rounded-2xl hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
+            class="inline-flex items-center justify-center px-5 py-3 text-2xl font-medium text-center bg-yellow rounded-2xl hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
           >
             Reserve a Table
           </a>
