@@ -1,13 +1,15 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Main from "../components/Main";
+import Chicago from "../components/Chicago";
+import Hero from "../components/Hero";
+import Menu from "../components/Menu";
+import Testimonials from "../components/Testimonials";
 
 export default function Homepage() {
   return (
     <>
-      <Header></Header>
-      <Main></Main>
-      <Footer></Footer>
+      <Hero></Hero>
+      <Menu></Menu>
+      <Testimonials />
+      <Chicago />
     </>
   );
 }
