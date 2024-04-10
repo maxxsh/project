@@ -17,9 +17,12 @@ export default function Hero() {
             Reserve a Table
           </a>
         </div>
-        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex -mb-[200px]">
           <img
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
+            className="rounded-2xl"
+            width={520}
+            height={580}
+            src={require("../assets/img/image-hero.jpg")}
             alt="mockup"
           />
         </div>

@@ -3,22 +3,25 @@ import Card from "./Card";
 export default function Menu() {
   const meals = [
     {
-      title: "React Space",
+      title: "Greek Salad",
+      price: 12.99,
       description:
         "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
       getImageSrc: () => require("../assets/img/greek-salad.jpg"),
     },
     {
-      title: "React Infinite Scroll",
+      title: "Bruchetta",
+      price: 5.99,
       description:
         "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
-      getImageSrc: () => require("../assets/img/greek-salad.jpg"),
+      getImageSrc: () => require("../assets/img/image-pr-9.jpg"),
     },
     {
-      title: "Photo Gallery",
+      title: "Lemeon desert",
+      price: 5.0,
       description:
         "A One-stop shop for photographers to share and monetize their photos, allowing them to have a second source of income",
-      getImageSrc: () => require("../assets/img/greek-salad.jpg"),
+      getImageSrc: () => require("../assets/img/image-pr.jpg"),
     },
   ];
 
@@ -40,6 +43,7 @@ export default function Menu() {
           {meals.map((meal) => (
             <Card
               key={meal.title}
+              price={meal.price}
               title={meal.title}
               description={meal.description}
               url="https://github.com/rgommezz/react-native-offline"
