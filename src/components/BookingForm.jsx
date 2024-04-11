@@ -1,30 +1,28 @@
-import { useState, useReducer } from "react";
+import { useState } from "react";
 
-const reduser = (state, action) => {
-  if (action.type === "update_time") console.log(state[0]);
-  return state.filter((item) => item !== action.reservedTime);
-};
-
-export default function BookingForm({ availableTimes, setAvailableTimes }) {
+export default function BookingForm({ availableTimes, updateTimes, onSubmit }) {
   const [data, setData] = useState("");
   const [time, setTime] = useState("");
   const [occasion, setOccasion] = useState("");
   const [guests, setGuests] = useState("");
-  console.log(data, time, guests);
-
-  const initializeTimes = [...availableTimes];
-
-  const [aavailableTimes, dispatch] = useReducer(reduser, initializeTimes);
-
-  console.log("aavailableTimes", aavailableTimes);
 
   const onTimeChange = (e) => {
-    setTime(e.target.value);
-    dispatch({ type: "update_time", reservedTime: e.target.value });
+    const selectedTime = e.target.value;
+    setTime(selectedTime);
+    // Call updateTimes to update available times
+    updateTimes(selectedTime);
+  };
+
+  const handleSubmt = (e) => {
+    e.preventDefault();
+    // onSubmit({ guests });
   };
 
   return (
-    <form className="grid gap-4 mb-4 sm:grid-cols-2 justify-items-start">
+    <form
+      className="grid gap-4 mb-4 sm:grid-cols-2 justify-items-start"
+      onSubmit={handleSubmt}
+    >
       <label
         htmlFor="res-date"
         className="block mt-2 text-sm font-medium text-gray-900 dark:text-white"

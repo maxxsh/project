@@ -5,22 +5,42 @@ import About from "./pages/About";
 import BookingPage from "./pages/BookingPage";
 import Homepage from "./pages/Homepage";
 import { Routes, Route } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
+
+// Define reducer function to manage state changes
+function availableTimesReducer(state, action) {
+  switch (action.type) {
+    case "UPDATE_TIMES":
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 export default function App() {
-  const [availableTimes, setAvailableTimes] = useState([
+  // Define initial state function
+  const initializeTimes = [
     "17:00",
     "18:00",
     "19:00",
     "20:00",
     "21:00",
     "22:00",
-  ]);
+  ];
 
-  function updateAvailableTimes() {
-    setAvailableTimes((prevState) => {
-      return { ...prevState, place: "World-Wide Web" };
-    });
-  }
+  const [availableTimes, dispatch] = useReducer(
+    availableTimesReducer,
+    initializeTimes
+  );
+
+  console.log(availableTimes);
+  // Function to update times
+  const updateTimes = (selectedTime) => {
+    // Remove the selected time from the available times
+    const updatedTimes = availableTimes.filter((time) => time !== selectedTime);
+    dispatch({ type: "UPDATE_TIMES", payload: updatedTimes });
+  };
+
   return (
     <>
       <Header />
@@ -33,7 +53,7 @@ export default function App() {
             element={
               <BookingPage
                 availableTimes={availableTimes}
-                updateAvailableTimes={updateAvailableTimes}
+                updateTimes={updateTimes}
               />
             }
           />
