@@ -1,22 +1,22 @@
 export default function Card({ title, price, description, imageSrc }) {
   return (
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
-        <img class="rounded-t-lg" src={imageSrc} alt={title} />
+        <img className="rounded-t-lg" src={imageSrc} alt={title} />
       </a>
-      <div class="p-5">
-        <div class="w-full inline-flex justify-between text-gray-900 dark:text-white">
+      <div className="p-5">
+        <div className="w-full inline-flex justify-between text-gray-900 dark:text-white">
           <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight">{title}</h5>
+            <h5 className="mb-2 text-2xl font-bold tracking-tight">{title}</h5>
           </a>
           <span>${price}</span>
         </div>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
           {description}
         </p>
         <a
           href="#"
-          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white hover:bg-yellow  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white hover:bg-yellow  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
         >
           Order a delivery
           <svg
@@ -26,10 +26,10 @@ export default function Card({ title, price, description, imageSrc }) {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="pl-2 -mb-1"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="pl-2 -mb-1"
           >
             <rect x="1" y="3" width="15" height="13" />
             <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />

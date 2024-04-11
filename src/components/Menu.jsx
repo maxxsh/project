@@ -26,20 +26,20 @@ export default function Menu() {
   ];
 
   return (
-    <section class="bg-white dark:bg-gray-900">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-        <div class="w-full md:flex justify-between mb-8 lg:mb-12">
-          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+    <section className="bg-white dark:bg-gray-900 pt-[100px]">
+      <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div className="w-full md:flex justify-between mb-8 lg:mb-12">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
             This weeks specials!
           </h2>
           <a
             href="#"
-            class="inline-flex items-center justify-center px-5 py-3 text-2xl font-medium text-center bg-yellow rounded-2xl hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
+            className="inline-flex items-center justify-center px-5 py-3 text-2xl font-semibold text-center bg-yellow rounded-2xl hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
           >
             Online Menu
           </a>
         </div>
-        <div class="space-y-8 grid  justify-center lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+        <div className="space-y-8 grid  justify-center lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
           {meals.map((meal) => (
             <Card
               key={meal.title}
