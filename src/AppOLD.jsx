@@ -22,24 +22,24 @@ function getInitialTimes() {
   return initializeTimes;
 }
 
-export { getInitialTimes };
+// Define updateTimes function within the App component
+function updateTimes(selectedTime, dispatch, availableTimes) {
+  // Remove the selected time from the available times
+  const updatedTimes = availableTimes.filter((time) => time !== selectedTime);
+  dispatch({ type: "UPDATE_TIMES", payload: updatedTimes });
+}
+
+// Export getInitialTimes and updateTimes functions
+export { getInitialTimes, updateTimes };
 
 export default function App() {
   // Define initial state function
-
   const [availableTimes, dispatch] = useReducer(
     availableTimesReducer,
     getInitialTimes()
   );
 
   console.log(availableTimes);
-  // Function to update times
-  const updateTimes = (selectedTime) => {
-    // Remove the selected time from the available times
-    const updatedTimes = availableTimes.filter((time) => time !== selectedTime);
-    dispatch({ type: "UPDATE_TIMES", payload: updatedTimes });
-  };
-  // Export updateTimes function only in testing environment
 
   return (
     <>
@@ -53,7 +53,9 @@ export default function App() {
             element={
               <BookingPage
                 availableTimes={availableTimes}
-                updateTimes={updateTimes}
+                updateTimes={(selectedTime) =>
+                  updateTimes(selectedTime, dispatch, availableTimes)
+                }
               />
             }
           />
