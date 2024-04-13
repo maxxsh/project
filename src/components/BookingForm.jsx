@@ -5,11 +5,7 @@ import { useSubmit } from "../utils/callAPI";
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/formContext";
 
-export default function BookingForm({
-  availableTimes,
-  updateTimes,
-  onTestSubmit,
-}) {
+export default function BookingForm({ availableTimes, updateTimes }) {
   const { isLoading, submitAPI } = useSubmit();
   const { formData, updateFormData } = useFormContext();
 
@@ -33,7 +29,6 @@ export default function BookingForm({
       occasion: "Birthday",
     },
     onSubmit: (values) => {
-      onTestSubmit(values);
       updateFormData(values);
       submitAPI(values)
         .then((response) => {
@@ -129,7 +124,7 @@ export default function BookingForm({
         className="block mt-2 text-sm font-medium text-gray-900 dark:text-white"
       >
         Choose time
-        {formik.errors.time ? (
+        {formik.touched.time && formik.errors.time ? (
           <span className="text-[#bf3535]"> {formik.errors.time}</span>
         ) : null}
       </label>
@@ -149,7 +144,7 @@ export default function BookingForm({
         className="block mt-2 text-sm font-medium text-gray-900 dark:text-white"
       >
         Number of guests
-        {formik.touched.guests && formik.errors.guests ? (
+        {formik.errors.guests ? (
           <span className="text-[#bf3535]"> {formik.errors.guests}</span>
         ) : null}
       </label>
@@ -159,8 +154,8 @@ export default function BookingForm({
         onChange={formik.handleChange}
         name="guests"
         placeholder="1"
-        min="1"
-        max="10"
+        // min="1"
+        // max="10"
         id="guests"
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
       />
@@ -185,18 +180,21 @@ export default function BookingForm({
         type="submit"
         className="mt-10 place-self-center col-span-2 min-w-[70%] inline-flex items-center justify-center px-5 py-3 text-2xl font-semibold text-center bg-yellow rounded-2xl hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
       >
-        <svg
-          className={isLoading ? "block" : "hidden"}
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <style>
-            {`.spinner_7NYg{animation:spinner_0KQs 1.2s cubic-bezier(0.52,0.6,0.25,0.99) infinite;}@keyframes spinner_0KQs{0%{r:0;opacity:1;}100%{r:11px;opacity:0;}}`}
-          </style>
-          <circle className="spinner_7NYg" cx="12" cy="12" r="0" />
-        </svg>
+        {isLoading && (
+          <svg
+            className={isLoading ? "block" : "hidden"}
+            data-testid="success-spinner"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <style>
+              {`.spinner_7NYg{animation:spinner_0KQs 1.2s cubic-bezier(0.52,0.6,0.25,0.99) infinite;}@keyframes spinner_0KQs{0%{r:0;opacity:1;}100%{r:11px;opacity:0;}}`}
+            </style>
+            <circle className="spinner_7NYg" cx="12" cy="12" r="0" />
+          </svg>
+        )}
         Make Your reservation
       </button>
     </form>

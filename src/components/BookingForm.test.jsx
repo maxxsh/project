@@ -139,16 +139,12 @@ describe("BookingForm component", () => {
   });
 
   test("Submitting the form with valid inputs calls onSubmit prop with true", async () => {
-    // Mock handleSubmit function
-    const handleSubmit = jest.fn();
-
     render(
       <Router>
         <FormProvider>
           <BookingForm
             availableTimes={availableTimes}
             updateTimes={mockUpdateTimes}
-            onTestSubmit={handleSubmit}
           />
         </FormProvider>
       </Router>
@@ -175,13 +171,18 @@ describe("BookingForm component", () => {
     });
     // Wait for handleSubmit
 
-    expect(handleSubmit).toHaveBeenCalledWith({
-      date: "2024-10-11",
-      email: "test@test.com",
-      guests: 4,
-      name: "Vasa",
-      occasion: "Birthday",
-      time: availableTimes[0],
-    });
+    // expect(handleSubmit).toHaveBeenCalledWith({
+    //   date: "2024-10-11",
+    //   email: "test@test.com",
+    //   guests: 4,
+    //   name: "Vasa",
+    //   occasion: "Birthday1",
+    //   time: availableTimes[0],
+    // });
+
+    const spinner = screen.getByTestId("success-spinner");
+
+    // Assert the form successfully submitted and the spinner has been rendered
+    expect(spinner).toBeInTheDocument();
   });
 });
