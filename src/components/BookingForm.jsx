@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
-import { Field, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
-import { submitAPI } from "../utils/fakeAPI";
+import { useSubmit } from "../utils/callAPI";
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/formContext";
 
-export default function BookingForm({ availableTimes, updateTimes }) {
+export default function BookingForm({
+  availableTimes,
+  updateTimes,
+  onTestSubmit,
+}) {
+  const { isLoading, submitAPI } = useSubmit();
   const { formData, updateFormData } = useFormContext();
 
   const [response, setResponse] = useState(false);
@@ -15,7 +20,6 @@ export default function BookingForm({ availableTimes, updateTimes }) {
 
   const onDateChange = (e) => {
     const selectedDate = e.target.value;
-    // Call updateTimes to update available times
     updateTimes(selectedDate);
   };
 
@@ -29,7 +33,7 @@ export default function BookingForm({ availableTimes, updateTimes }) {
       occasion: "Birthday",
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      onTestSubmit(values);
       updateFormData(values);
       submitAPI(values)
         .then((response) => {
@@ -39,6 +43,12 @@ export default function BookingForm({ availableTimes, updateTimes }) {
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Required"),
+      date: Yup.string().required("Required"),
+      time: Yup.string().oneOf(availableTimes, "Invalid time"),
+      guests: Yup.number()
+        .min(1, "Value must be greater than 0")
+        .max(9, "Value must be less than 10")
+        .required("Value is required"),
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
   });
@@ -52,7 +62,7 @@ export default function BookingForm({ availableTimes, updateTimes }) {
 
   return (
     <form
-      className="grid gap-4 mb-4 sm:grid-cols-2 justify-items-start"
+      className="grid gap-4 mb-4 sm:grid-cols-2 justify-items-start text-left"
       onSubmit={formik.handleSubmit}
     >
       <label
@@ -61,7 +71,7 @@ export default function BookingForm({ availableTimes, updateTimes }) {
       >
         Your name
         {formik.touched.name && formik.errors.name ? (
-          <span className="text-[#bf3535]"> {formik.errors.name}</span>
+          <span className="text-[#bf3535]">{formik.errors.name}</span>
         ) : null}
       </label>
       <input
@@ -98,6 +108,9 @@ export default function BookingForm({ availableTimes, updateTimes }) {
         className="block mt-2 text-sm font-medium text-gray-900 dark:text-white"
       >
         Choose date
+        {formik.touched.date && formik.errors.date ? (
+          <span className="text-[#bf3535]"> {formik.errors.date}</span>
+        ) : null}
       </label>
       <input
         type="date"
@@ -116,6 +129,9 @@ export default function BookingForm({ availableTimes, updateTimes }) {
         className="block mt-2 text-sm font-medium text-gray-900 dark:text-white"
       >
         Choose time
+        {formik.errors.time ? (
+          <span className="text-[#bf3535]"> {formik.errors.time}</span>
+        ) : null}
       </label>
       <select
         value={formik.values.time}
@@ -133,6 +149,9 @@ export default function BookingForm({ availableTimes, updateTimes }) {
         className="block mt-2 text-sm font-medium text-gray-900 dark:text-white"
       >
         Number of guests
+        {formik.touched.guests && formik.errors.guests ? (
+          <span className="text-[#bf3535]"> {formik.errors.guests}</span>
+        ) : null}
       </label>
       <input
         type="number"
@@ -162,9 +181,22 @@ export default function BookingForm({ availableTimes, updateTimes }) {
         <option>Anniversary</option>
       </select>
       <button
+        disabled={!formik.isValid || !formik.dirty || isLoading}
         type="submit"
-        className="inline-flex items-center justify-center px-5 py-3 text-2xl font-semibold text-center bg-yellow rounded-2xl hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
+        className="mt-10 place-self-center col-span-2 min-w-[70%] inline-flex items-center justify-center px-5 py-3 text-2xl font-semibold text-center bg-yellow rounded-2xl hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
       >
+        <svg
+          className={isLoading ? "block" : "hidden"}
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <style>
+            {`.spinner_7NYg{animation:spinner_0KQs 1.2s cubic-bezier(0.52,0.6,0.25,0.99) infinite;}@keyframes spinner_0KQs{0%{r:0;opacity:1;}100%{r:11px;opacity:0;}}`}
+          </style>
+          <circle className="spinner_7NYg" cx="12" cy="12" r="0" />
+        </svg>
         Make Your reservation
       </button>
     </form>

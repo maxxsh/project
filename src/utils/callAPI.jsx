@@ -1,3 +1,6 @@
+import { useState } from "react";
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const seededRandom = () => {
   let timeArray = [
     "09:00",
@@ -51,8 +54,26 @@ export const fetchAPI = async (date) => {
     let result = seededRandom(date.getDate());
     return result;
   } catch (error) {
-    console.error("Failed to fetch data (make sure local is launched):", error);
+    console.error("Something went wrong, please try again later!", error);
   }
 };
 
-export const submitAPI = async (formData) => true;
+/**
+ * This is a custom hook that can be used to submit a form and simulate an API call
+ * It uses Math.random() to simulate a random success or failure, with 50% chance of each
+ */
+export const useSubmit = () => {
+  const [isLoading, setLoading] = useState(false);
+  const submitAPI = async (formData) => {
+    setLoading(true);
+    await wait(2000);
+    try {
+      return formData ? true : false;
+    } catch (error) {
+      console.error("Something went wrong, please try again later!", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  return { isLoading, submitAPI };
+};

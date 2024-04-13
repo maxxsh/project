@@ -85,6 +85,7 @@ export default function Header({ isDark, setIsDark }) {
             <button onClick={() => setIsDark(!isDark)}>
               {isDark ? (
                 <svg
+                  aria-label="Switch to light theme"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -108,6 +109,7 @@ export default function Header({ isDark, setIsDark }) {
                 </svg>
               ) : (
                 <svg
+                  aria-label="Switch to dark theme"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"

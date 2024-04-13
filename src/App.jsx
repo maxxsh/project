@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import About from "./pages/About";
 import BookingPage from "./pages/BookingPage";
 import Homepage from "./pages/Homepage";
-import { fetchAPI } from "./utils/fakeAPI";
+import { fetchAPI } from "./utils/callAPI";
 import ConfirmedBooking from "./pages/ConfirmedBooking";
 import { FormProvider } from "./context/formContext";
 
@@ -35,7 +35,7 @@ export default function App() {
 
   // Function to update times
   const updateTimes = (selectedTime) => {
-    fetchAPI(new Date(2024, 0, 15))
+    fetchAPI(new Date(selectedTime))
       .then((jsonData) => dispatch({ type: "UPDATE_TIMES", payload: jsonData }))
       .catch((error) => console.log(error));
   };
