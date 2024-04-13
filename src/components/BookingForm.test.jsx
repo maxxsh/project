@@ -34,7 +34,7 @@ describe("BookingForm component", () => {
     expect(headingElement).toBeInTheDocument();
   });
 
-  test("Submitting the form with valid inputs", () => {
+  test("Submitting the form with valid inputs", async () => {
     // Render the BookingForm component
     render(
       <Router>
@@ -48,7 +48,7 @@ describe("BookingForm component", () => {
     );
 
     // Fill in form inputs and submit the form within act(...)
-    act(() => {
+    await act(async () => {
       fireEvent.change(screen.getByLabelText("Choose date"), {
         target: { value: "2024-04-11" },
       });
@@ -79,7 +79,7 @@ describe("BookingForm component", () => {
 
     // Get the guests input field
     const guestsInput = screen.getByLabelText("Number of guests");
-    act(() => {
+    await act(async () => {
       // Enter a valid value
       fireEvent.change(guestsInput, { target: { value: "4" } });
     });
@@ -96,7 +96,7 @@ describe("BookingForm component", () => {
       </Router>
     );
 
-    act(() => {
+    await act(async () => {
       fireEvent.cl;
       // Fill in invalid form inputs
       fireEvent.change(screen.getByLabelText("Number of guests"), {
@@ -124,7 +124,7 @@ describe("BookingForm component", () => {
         </FormProvider>
       </Router>
     );
-    act(() => {
+    await act(async () => {
       fireEvent.cl;
       // Fill in invalid form inputs
       fireEvent.change(screen.getByLabelText("Choose date"), {
@@ -153,7 +153,7 @@ describe("BookingForm component", () => {
         </FormProvider>
       </Router>
     );
-    act(() => {
+    await act(async () => {
       // Fill in valid form inputs
       fireEvent.change(screen.getByLabelText("Your name"), {
         target: { value: "Vasa" },
@@ -174,15 +174,14 @@ describe("BookingForm component", () => {
       fireEvent.click(screen.getByText("Make Your reservation"));
     });
     // Wait for handleSubmit
-    await waitFor(() => {
-      expect(handleSubmit).toHaveBeenCalledWith({
-        date: "2024-10-11",
-        email: "test@test.com",
-        guests: 4,
-        name: "Vasa",
-        occasion: "Birthday",
-        time: availableTimes[0],
-      });
+
+    expect(handleSubmit).toHaveBeenCalledWith({
+      date: "2024-10-11",
+      email: "test@test.com",
+      guests: 4,
+      name: "Vasa",
+      occasion: "Birthday",
+      time: availableTimes[0],
     });
   });
 });
