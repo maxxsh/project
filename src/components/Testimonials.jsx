@@ -5,22 +5,22 @@ export default function Testimonials() {
     {
       title: "Kent Newman",
       description:
-        "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
+        "To end the meal, I indulged in a decadent slice of baklava and a strong cup of Turkish coffee. It was the perfect way to end a delicious and memorable dining experience.",
     },
     {
       title: "Veronica Steeves",
       description:
-        "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
+        "It's clear that this family owned restaurant puts their heart and soul into every aspect of their business, making it a gem in the community.",
     },
     {
       title: "Juan Ortiz",
       description:
-        "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
+        "I highly recommend Little Lemon to anyone looking for a taste of authentic Mediterranean cuisine.",
     },
     {
       title: "Billy Diaz",
       description:
-        "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
+        " The food, service, and ambiance all exceeded my expectations and I can't wait to go back and try more dishes. ",
     },
   ];
 
