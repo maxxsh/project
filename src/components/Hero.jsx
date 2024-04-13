@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Hero() {
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -10,12 +12,12 @@ export default function Hero() {
             We are family owned Mediterrenan restaurant, focused on traditional
             recepies served with a modern twist.
           </p>
-          <a
-            href="#"
+          <Link
+            to="/reservations"
             className="inline-flex items-center justify-center px-5 py-3 text-2xl font-semibold text-center bg-yellow rounded-2xl hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
           >
             Reserve a Table
-          </a>
+          </Link>
         </div>
         <div className="hidden lg:mt-0 lg:col-span-5 lg:flex -mb-[200px]">
           <img
