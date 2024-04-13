@@ -1,8 +1,16 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/formContext";
 
 export default function ConfirmedBooking() {
   const { formData } = useFormContext();
-  console.log("formData", formData);
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!formData.email) {
+      navigate("/reservations");
+    }
+  }, [formData]);
 
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -21,11 +29,11 @@ export default function ConfirmedBooking() {
                 </p>
                 <p className="mb-4">🌟 Your Reservation Details:</p>
                 <p className="mb-4 font-lg">
-                  <strong>- Name: {formData.name}</strong> <br />-{" "}
-                  <strong>Email: {formData.email}</strong> <br />-{" "}
-                  <strong>Date: {formData.date}</strong> <br />-{" "}
-                  <strong>Time: {formData.time}</strong> <br />-{" "}
-                  <strong>Number of Guests: {formData.date}</strong> <br />-{" "}
+                  <strong>- Name: {formData.name}</strong> <br />-
+                  <strong>Email: {formData.email}</strong> <br />-
+                  <strong>Date: {formData.date}</strong> <br />-
+                  <strong>Time: {formData.time}</strong> <br />-
+                  <strong>Number of Guests: {formData.date}</strong> <br />-
                   <strong>Occasion: {formData.occasion}</strong>,
                 </p>
                 <p className="mb-4">
