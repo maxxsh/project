@@ -7,6 +7,11 @@ export default function Card({
   setInCart,
 }) {
   const clickHandler = (a) => {
+    alert(
+      "Item added to the cart. " +
+        a +
+        ". You can check you cart by clicking 'View Cart' button"
+    );
     setInCart([...inCart, a]);
   };
   return (

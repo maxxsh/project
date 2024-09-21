@@ -1,6 +1,7 @@
 export default function Modal({ inCart = [], setInCart, setIsModal }) {
   const clickHandler = (a) => {
     // setInCart((prevCart) => [...prevCart, a]);
+    alert("Cart creared!");
     setInCart([]);
   };
   return (
