@@ -4,6 +4,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import About from "./pages/About";
+import Gallery from "./pages/Gallery";
 import BookingPage from "./pages/BookingPage";
 import Homepage from "./pages/Homepage";
 import { fetchAPI } from "./utils/callAPI";
@@ -48,6 +49,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route
               path="/reservations"
               element={

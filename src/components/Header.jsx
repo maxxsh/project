@@ -16,12 +16,12 @@ const links = [
     url: "/menu",
   },
   {
-    title: "Reservations",
-    url: "/reservations",
+    title: "Gallery page",
+    url: "/gallery",
   },
   {
-    title: "Order Online",
-    url: "/order",
+    title: "Reservations",
+    url: "/reservations",
   },
   {
     title: "Login",
