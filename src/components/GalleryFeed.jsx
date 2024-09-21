@@ -1,6 +1,6 @@
 import GalleryCard from "./GalleryCard";
 
-export default function Menu() {
+export default function GalleryFeed() {
   const meals = [
     {
       title: "Greek Salad",

@@ -33,6 +33,7 @@ export default function App() {
     getInitialTimes()
   );
   const [isDark, setIsDark] = useState(false);
+  const [inCart, setInCart] = useState(0);
 
   // Function to update times
   const updateTimes = (selectedTime) => {
@@ -49,7 +50,10 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/about" element={<About />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route
+              path="/gallery"
+              element={<Gallery inCart={inCart} setInCart={setInCart} />}
+            />
             <Route
               path="/reservations"
               element={
