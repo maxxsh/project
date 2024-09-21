@@ -1,6 +1,9 @@
 import GalleryCard from "./GalleryCard";
+import Modal from "./Modal";
+import React, { useReducer, useState, useEffect } from "react";
 
-export default function GalleryFeed() {
+export default function GalleryFeed({ inCart, setInCart }) {
+  const [isModal, setIsModal] = useState(false);
   const meals = [
     {
       title: "Greek Salad",
@@ -32,12 +35,12 @@ export default function GalleryFeed() {
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
             This weeks specials!
           </h2>
-          <a
-            href="#"
+          <button
+            onClick={() => setIsModal(true)}
             className="inline-flex items-center justify-center px-5 py-3 text-2xl font-semibold text-center bg-yellow rounded-2xl hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 "
           >
             View Cart
-          </a>
+          </button>
         </div>
         <div className="space-y-8 grid  justify-center lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
           {Array.from({ length: 4 }).map((_, index) =>
@@ -49,11 +52,18 @@ export default function GalleryFeed() {
                 description={meal.description}
                 url="https://github.com/rgommezz/react-native-offline"
                 imageSrc={meal.getImageSrc()}
+                setInCart={setInCart}
+                inCart={inCart}
               />
             ))
           )}
         </div>
       </div>
+      {isModal ? (
+        <Modal inCart={inCart} setInCart={setInCart} setIsModal={setIsModal} />
+      ) : (
+        ""
+      )}
     </section>
   );
 }

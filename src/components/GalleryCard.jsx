@@ -1,4 +1,14 @@
-export default function Card({ title, price, description, imageSrc }) {
+export default function Card({
+  title,
+  price,
+  description,
+  imageSrc,
+  inCart,
+  setInCart,
+}) {
+  const clickHandler = (a) => {
+    setInCart([...inCart, a]);
+  };
   return (
     <div className="max-w-sm flex flex-col bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
@@ -14,8 +24,8 @@ export default function Card({ title, price, description, imageSrc }) {
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
           {description}
         </p>
-        <a
-          href="#"
+        <button
+          onClick={() => clickHandler(title)}
           className="inline-flex items-center border-2 border-yellow px-3 py-2 text-sm text-gray-900 font-medium text-center dark:text-white hover:bg-yellow  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
         >
           Add to Cart
@@ -26,16 +36,16 @@ export default function Card({ title, price, description, imageSrc }) {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="pl-2 -mb-1"
           >
             <circle cx="9" cy="21" r="1" />
             <circle cx="20" cy="21" r="1" />
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ export default function App() {
     getInitialTimes()
   );
   const [isDark, setIsDark] = useState(false);
-  const [inCart, setInCart] = useState(0);
+  const [inCart, setInCart] = useState([]);
 
   // Function to update times
   const updateTimes = (selectedTime) => {
@@ -41,7 +41,7 @@ export default function App() {
       .then((jsonData) => dispatch({ type: "UPDATE_TIMES", payload: jsonData }))
       .catch((error) => console.log(error));
   };
-
+  console.log(inCart);
   return (
     <div className={isDark ? "dark" : null}>
       <Header isDark={isDark} setIsDark={setIsDark} />
