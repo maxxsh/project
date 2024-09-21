@@ -8,7 +8,7 @@ const links = [
     url: "/",
   },
   {
-    title: "About",
+    title: "About Us",
     url: "/about",
   },
   {
